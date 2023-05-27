@@ -1,0 +1,33 @@
+import pygame
+q1 = ''
+a1 = ''
+q2 = ''
+a2 = ''
+q3 = ''
+a2 = ''
+pygame.init()
+window = pygame.display.set_mode((500,500))
+window.fill((120,250,250))
+clock = pygame.time.Clock()
+
+class TextArea():
+    def __init__(self, x, y, width, height, color):
+        self.rect = pygame.Rect(x, y, width, height)
+        self.fill_color = color
+    def set_text(self, size, text, text_color):
+        font1 = pygame.font.Font(None, size)
+        self.image = font1.render(text, True, text_color)
+    def draw(self, shift_x, shift_y):
+        pygame.draw.rect(window, self.fill_color, self.rect)
+        window.blit(self.image, (self.rect.x + shift_x, self.rect.y + shift_y))
+
+question = TextArea(120, 120, 290, 70, (255,0,0))
+question.set_text(70, 'Вопрос', (255,255,255))
+answer = TextArea(120, 200, 290, 70, (255,0,0))
+answer.set_text(70, 'Ответ', (255, 255, 255))
+
+while True:
+    question.draw(10,20)
+    answer.draw(10,20)
+    pygame.display.update()
+    clock.tick(40)
